@@ -5,14 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/js/listing.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            getMovieData(movie_url)
+        })
+    </script>
     <title>Document</title>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li>asd</li>
-        </ul>
-    </nav>
+    <header>
+        <div class="search">
+            <label>영화 검색 : </label>
+            <input type="text" id="search_title" placeholder="영화 제목 검색" />
+            <button type="submit" id="search_btn" onclick="handleSearch()">검색</button>
+        </div>
+    </header>
     <main>
         <!-- <h1>메인 영역의 제목입니다.</h1> -->
     </main>
