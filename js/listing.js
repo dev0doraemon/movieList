@@ -9,10 +9,6 @@ let size = "w500"; // "original" is available
 let handleSearch = () => {
     // 포스트 제목 정보를 불러오기 위해 
     let posts = document.getElementsByClassName('movie_post');
-    // console.log(posts);
-    // foreach 왜 안되누..
-    // posts.forEach((post) => {
-    // })
     let title;
     // 검색할 때 쓴 문자열 정보를 불러오고 모두 소문자로 바꿈
     let keyword = document.getElementById('search_title').value.toLowerCase();
@@ -29,7 +25,6 @@ let handleSearch = () => {
             // 타이틀과 검색 키워드가 일치하는 패턴이 있을 경우 포스터 보여줌
             posts[i].style.display = "block";
         }
-        // console.log(posts[i]);
     }
 }
 
@@ -86,7 +81,9 @@ let renderMovieTemplate = (postId, postImg, postTitle, postOverView, postVoteAvg
 
 // 문서가 처음 시작할 때 실행되는 코드
 document.addEventListener("DOMContentLoaded", () => {
+    // 검색창에 엔터 누르면 검색하는 기능 추가
     document.getElementById('search_title').addEventListener("keydown", (e) => {
+        // 브라우저에서 e.key를 지원하지 않고 e.keyCode를 지원할 때 문제 없도록 처리
         if (e.key || e.keyCode === 'Enter') {
             handleSearch();
         }
@@ -103,52 +100,3 @@ getMovieData(movie_url).then((data) => {
         renderMovieTemplate(post['id'], image_base_url + size + post['poster_path'], post['original_title'], post['overview'], post['vote_average']);
     });
 });
-
-
-
-
-
-// const options = {
-//     method: "GET",
-//     headers: {
-//         accept: "application/json",
-//         Authorization:
-//             "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NjQxMWFmZjRiODc0OTE1MWQ1ZDBjZDAyZTIzNGVmZSIsInN1YiI6IjY0NzA4NmZmMzM2ZTAxMDBjNzA3OTc1YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NSCtfR7Cu5h3HYuAUk_fJ1ivWxZ8ewChQOmBNjM2VQo",
-//     },
-// };
-
-// fetch(url + page, options)
-//     .then((response) => response.json())
-//     .then((response) => console.log(response))
-//     .catch((err) => console.error(err));
-
-// fetch(url + page, options)
-//     .then((response) => response.json())
-//     .then((response) => {
-//         console.log(response);
-//         const posts = response['results'];
-//         posts.forEach((post) => {
-//             // console.log(post['backdrop_path'], post['original_title'], post['overview'], post['poster_path']);
-//             console.log(post['id'], image_base_url + size + post['poster_path'], post['original_title'], post['overview'], post['vote_average']);
-//         })
-//     })
-//     .catch((err) => console.error(err));
-
-// function renderMovieTemplate(postId, postImg, postTitle, postOverView, postVoteAvg) {
-//     let template = `
-//         <div id=${postId}>
-//             <div>
-//                 <img src=${image_base_url}${size}${postImg} />
-//             </div>
-//             <div>
-//                 <h2>${postTitle}</h2>
-//                 <div>
-//                     ${postOverView}
-//                 </div>
-//                 <span>${postVoteAvg}</span>
-//             </div>
-//         </div>
-//     `;
-
-//     return template;
-// }
