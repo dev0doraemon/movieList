@@ -38,6 +38,7 @@ let getMovieData = async (url) => {
         },
     };
     const response = await fetch(url, options);
+    // fetch  못받을 경우 예외처리 하기
 
     return response.json();
 }
